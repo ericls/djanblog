@@ -1,0 +1,61 @@
+<div class="posts">
+    {% for post in posts %}
+    <div class="post">
+        <h2 class="title">
+            <a href="{% url 'post' post.slug %}" >{{post.title}}</a>
+        </h2>
+        <div class="post_body">
+            <div class="p_part yue">
+                {{post.content|safe|truncatechars_html:300}}
+            </div>
+        </div>
+
+        {% spaceless %}
+        <div class="info">
+            <span title="Public Date" class="date">
+                <i class="fa fa-clock-o"></i>&nbsp;
+                {{post.pub_date|date:"Y-m-d"}}
+            </span>
+            <span title="Views" class="visitors">
+                <i class="fa fa-user"></i>&nbsp;
+                {{post.click}}
+            </span>
+            <span title="Comments" class="comments">
+                <i class="fa fa-comment"></i>&nbsp;
+                <a href="#disqus_thread" data-disqus-identifier="{{post.slug}}">Loading</a>
+            </span>
+            {% with tags=post.tag.all %}
+            {% if tags %}
+            <span class="tags">
+                <i class="fa fa-tags"></i>
+                {% for tag in tags %}
+                <a href="{% url 'tag_1' tag.name %}">{{tag.name}}</a>
+                {% endfor %}
+            </span>
+            {% endif %}
+            {% endwith %}
+            <a href="{% url 'post' post.slug %}"  class="read_more">
+                <i class="fa fa-file-text-o"></i>&nbsp;
+                Read More
+            </a>
+        </div>
+        {% endspaceless %}
+    </div>
+    {% endfor %}
+
+</div>
+
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'xxx';
+    // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    ( function() {
+            var s = document.createElement('script');
+            s.async = true;
+            s.type = 'text/javascript';
+            s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }()); 
+</script>

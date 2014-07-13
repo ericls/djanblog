@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <title>eRic</title>
+    <link href="/"></link>
+    <link ref="self" href="/feed"></link>
+    <id>eric</id>
+    <updated>{{updated}}</updated>
+
+    {% for post in posts %}
+    <entry>
+
+        
+        <title>{{post.title}}</title>
+        <link href="{% url 'post' post.slug %}"  rel="alternate"></link>
+        <updated>{{post.pub_date}}</updated>
+        <id>{{post.slug}}</id>
+        <author>
+            <name>{{post.author.username}}</name>
+        </author>
+        <summary type="html">{{post.content|truncatechars_html:300}}</summary>
+    </entry>
+    {% endfor %}
+
+</feed>

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<ul class="list_with_title container">
+    {% regroup posts by pub_date.year as year_list %}
+    {% for year in year_list %}
+    <li class="listing_title">{{year.grouper}}</li>
+    <ul class="listing">
+        {% for post in year.list %}
+        <li class="listing_item">
+        <span class="date">{{post.pub_date|date:"Y-m-d"}}</span>
+        <a href="{% url 'post' post.slug %}" title="{{post.title}}">{{post.title}}</a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endfor %}
+</ul>
+{% endblock %}

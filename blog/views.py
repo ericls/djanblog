@@ -6,13 +6,13 @@ from blog.models import post, tag
 
 
 def feed(request):
-    posts = post.objects.all()
+    posts = post.objects.hidden(hidden=False).all()
     updated = post.objects.latest('pub_date').pub_date
     return render_to_response('feed.xml', {'posts': posts, 'updated': updated})
 
 
 def archive(request):
-    posts = post.objects.all()
+    posts = post.objects.filter(hidden=False).all()
     return render_to_response('archive.html', {'posts': posts, 'title':'Archive'})
 
 
@@ -23,7 +23,7 @@ class index_view(ListView):
     paginate_by = 3
 
     def get_queryset(self, **kwargs):
-        return post.objects.all()
+        return post.objects.filter(hidden=False).all()
 
     def get_context_data(self, **kwargs):
         context = super(ListView, self).get_context_data(**kwargs)
@@ -40,7 +40,7 @@ class tag_view(ListView):
 
     def get_queryset(self, **kwargs):
         t = tag.objects.get(name=self.kwargs.get('slug'))
-        return post.objects.filter(tag=t).all()
+        return post.objects.filter(tag=t, hidden=False).all()
 
     def get_context_data(self, **kwargs):
         context = super(ListView, self).get_context_data(**kwargs)

@@ -12,8 +12,8 @@ class post(models.Model):
     tag = models.ManyToManyField('tag', null=True, blank=True)
     content_raw = models.TextField()
     content = models.TextField(default='')
-    click=models.IntegerField(default=0)
-    hidden=models.BooleanField(default=False)
+    click = models.IntegerField(default=0)
+    hidden = models.BooleanField(default=False)
     order = models.IntegerField(default=10)
 
     class Meta:

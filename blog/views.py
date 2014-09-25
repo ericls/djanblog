@@ -57,7 +57,7 @@ class post_view(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(DetailView, self).get_context_data(**kwargs)
-        current = context['post']
+        current = self.object
         current.click += 1
         current.save()
 

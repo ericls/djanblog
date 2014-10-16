@@ -1,0 +1,5 @@
+Django==1.7
+argparse==1.2.1
+mistune==0.4.1
+six==1.8.0
+wsgiref==0.1.2

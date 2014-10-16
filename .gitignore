@@ -95,4 +95,4 @@ $RECYCLE.BIN/
 *.msp
 
 .idea
-test.sqlite3
+*.sqlite3

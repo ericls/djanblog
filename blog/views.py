@@ -3,7 +3,6 @@ from django.shortcuts import render_to_response
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from blog.models import Post, Tag
-from django.db.models import F
 
 
 def feed(request):

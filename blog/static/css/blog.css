@@ -71,17 +71,20 @@ ul, ol, dl {
     font-size: 2.8em;
 }
 
-#body_wrapper .header .header_wrapper h1 a {
+#body_wrapper .header .header_wrapper a h1 {
     letter-spacing: -1px;
     font-weight: normal;
     text-shadow: 2px 1px #555;
     color: #fff;
     text-decoration: none;
+    transition: 1s;
 }
 
-#body_wrapper .header .header_wrapper h1 a:hover {
+#body_wrapper .header .header_wrapper a h1:hover {
     text-decoration: none;
-    border-bottom: 1px solid #fff;
+    transition: 1s;
+    text-shadow: 2px 1px #999;
+    color: rgba(255, 255, 255, 1);
 }
 
 #body_wrapper .header .header_wrapper .nav {
@@ -778,4 +781,9 @@ pre code {
     background: none;
     padding: 0;
     margin: 0;
+}
+
+code.hljs {
+    margin-bottom: -1em;
+    padding-bottom: 0;
 }

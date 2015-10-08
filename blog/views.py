@@ -2,28 +2,29 @@
 from django.shortcuts import render_to_response
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from blog.models import post, tag
+from blog.models import Post, Tag
+from django.db.models import F
 
 
 def feed(request):
-    posts = post.objects.hidden(hidden=False).all()
-    updated = post.objects.latest('pub_date').pub_date
+    posts = Post.objects.filter(hidden=False).all()
+    updated = Post.objects.latest('pub_date').pub_date
     return render_to_response('feed.xml', {'posts': posts, 'updated': updated})
 
 
 def archive(request):
-    posts = post.objects.filter(hidden=False).all()
+    posts = Post.objects.filter(hidden=False).all()
     return render_to_response('archive.html', {'posts': posts, 'title':'Archive'})
 
 
-class index_view(ListView):
-    model = post
+class IndexView(ListView):
+    model = Post
     template_name = 'index.html'
     context_object_name = 'posts'
     paginate_by = 3
 
     def get_queryset(self, **kwargs):
-        return post.objects.filter(hidden=False).all()
+        return Post.objects.filter(hidden=False).all()
 
     def get_context_data(self, **kwargs):
         context = super(ListView, self).get_context_data(**kwargs)
@@ -32,34 +33,33 @@ class index_view(ListView):
         return context
 
 
-class tag_view(ListView):
-    model = post
+class TagView(ListView):
+    model = Post
     template_name = 'tag.html'
     context_object_name = 'posts'
     paginate_by = 3
 
     def get_queryset(self, **kwargs):
-        t = tag.objects.get(name=self.kwargs.get('slug'))
-        return post.objects.filter(tag=t, hidden=False).all()
+        t = Tag.objects.get(name=self.kwargs.get('slug'))
+        return Post.objects.filter(tag=t, hidden=False).all()
 
     def get_context_data(self, **kwargs):
         context = super(ListView, self).get_context_data(**kwargs)
         title = self.kwargs.get('slug')
-        context['tag'] = tag.objects.get(name=title)
+        context['tag'] = Tag.objects.get(name=title)
         context['title'] = title
         return context
 
 
-class post_view(DetailView):
-    model = post
+class PostView(DetailView):
+    model = Post
     template_name = 'post.html'
     context_object_name = 'post'
 
     def get_context_data(self, **kwargs):
         context = super(DetailView, self).get_context_data(**kwargs)
         current = self.object
-        current.click += 1
-        current.save()
+        current.increase_click()
 
         try:
             next_post = current.get_next_by_pub_date()

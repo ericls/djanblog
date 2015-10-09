@@ -25,6 +25,10 @@
                 <i class="fa fa-user"></i>&nbsp;
                 {{post.click}}
             </span>
+            {% if user.is_authenticated %}
+                <i class="fa fa-pencil-square"></i>&nbsp;
+                <a href="{% url 'edit_post' post.slug %}">Edit</a>
+            {% endif %}
             <div class="other_posts">
                 {% if previous %}
                 <a href="{% url 'post' previous.slug %}" class="pre">&lt; {{previous.title}}</a>
@@ -32,7 +36,7 @@
                 {% if next %}
                 <a href="{% url 'post' next.slug %}" class="next">{{next.title}} &gt;</a>
                 {% endif %}
-            </div> 
+            </div>
         </div>
     </div>
 </div>
@@ -59,5 +63,5 @@ var disqus_identifier =  '{{post.slug}}';
 </noscript>
 <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 </div>
-<!--disqus-->  
+<!--disqus-->
 {% endblock %}

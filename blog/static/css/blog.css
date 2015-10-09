@@ -510,7 +510,7 @@ hr {
 }
 
 #fb_comments_container #fb_comments h4, #fb_comments_container #fb_comments h5,
-                          #fb_comments_container #fb_comments h6 {
+#fb_comments_container #fb_comments h6 {
     font-size: 1.05em;
 }
 
@@ -537,32 +537,32 @@ hr {
 }
 
 #fb_comments_container #fb_comments .comment .comment_body,
-                              #fb_comments_container #fb_comments .comment .c_content {
+#fb_comments_container #fb_comments .comment .c_content {
     margin-left: 70px;
     display: block;
 }
 
 #fb_comments_container #fb_comments .comment .comment_body p,
-                              #fb_comments_container #fb_comments .comment .c_content p {
+#fb_comments_container #fb_comments .comment .c_content p {
     margin: 5px 0 15px 0;
     padding: 0;
     line-height: 1.8;
 }
 
 #fb_comments_container #fb_comments .comment .comment_body .author,
-                              #fb_comments_container #fb_comments .comment .c_content .author {
+#fb_comments_container #fb_comments .comment .c_content .author {
     line-height: 1.5em;
     margin: 0;
     padding: 0;
 }
 
 #fb_comments_container #fb_comments .comment .comment_body .author b,
-                              #fb_comments_container #fb_comments .comment .c_content .author b {
+#fb_comments_container #fb_comments .comment .c_content .author b {
     color: #555;
 }
 
 #fb_comments_container #fb_comments .comment .comment_body .author small,
-                              #fb_comments_container #fb_comments .comment .c_content .author small {
+#fb_comments_container #fb_comments .comment .c_content .author small {
     font-weight: normal;
     padding-left: 10px;
     font-size: 0.7em;
@@ -786,4 +786,53 @@ pre code {
 code.hljs {
     margin-bottom: -1em;
     padding-bottom: 0;
+}
+
+/* editor */
+.editor code.hljs{
+    margin-bottom: 0;
+}
+.fields {
+    max-width: 910px;
+    margin: auto;
+}
+input.editor-title {
+    display: block;
+    width: 100%;
+    background-color: transparent;
+    font-size: 2em;
+    line-height: 1.2em;
+    border: none;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+    font-family: Georgia, "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif;
+}
+
+textarea.editor-content{
+    font-size: 1em;
+    background-color: rgba(0,0,0,0.05);
+    min-height:100px;
+    border: none;
+    display: inline-block;
+    width: 100%;
+    margin-top: 10px;
+    padding: 1em;
+}
+
+input.editor-tags, input.editor-slug {
+    display: block;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    font-size: 0.9em;
+    border-bottom: 1px solid #eee;
+    font-family: Georgia, "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
 }

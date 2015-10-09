@@ -10,4 +10,6 @@ urlpatterns = patterns(
     url(r'^page/(?P<page>\d+)/$', IndexView.as_view(), name='index'),
     url(r'^tag/(?P<slug>.*?)/page/(?P<page>\d+)/$', TagView.as_view(), name='tag'),
     url(r'^tag/(?P<slug>.*?)/$', TagView.as_view(), name='tag_1'),
+    url(r'^new/$', 'editor', name='new_post'),
+    url(r'^edit/(?P<slug>.*?)/$', 'editor', name='edit_post'),
 )

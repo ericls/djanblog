@@ -16,6 +16,9 @@
     <link href="{% static 'css/tomorrow.css' %}" type="text/css" rel="stylesheet"/>
     <link href="{% static 'css/blog.css' %}" type="text/css" rel="stylesheet"/>
 
+    {% block header_ext %}
+    {% endblock %}
+
 </head>
 <body class="yue">
 <div id="body_wrapper">
@@ -35,6 +38,10 @@
                 </li>
                 <li><a href="{% url 'feed' %}">RSS</a>
                 </li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'new_post' %}">+New</a>
+                    </li>
+                {% endif %}
             </ul>
         </div>
     </header>
@@ -58,5 +65,7 @@
         $('pre code').each(function(i, e) {hljs.highlightBlock(e)});
     });
 </script>
+{% block footer_ext %}
+{% endblock %}
 </body>
 </html>

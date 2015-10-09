@@ -2,7 +2,10 @@
 from django.shortcuts import render_to_response
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from django.http import HttpResponseForbidden, HttpResponse
 from blog.models import Post, Tag
+from django.shortcuts import get_object_or_404
+import json
 
 
 def feed(request):
@@ -13,7 +16,38 @@ def feed(request):
 
 def archive(request):
     posts = Post.objects.filter(hidden=False).all()
-    return render_to_response('archive.html', {'posts': posts, 'title':'Archive'})
+    return render_to_response('archive.html', {'posts': posts, 'title': 'Archive'})
+
+
+def editor(request, slug=None):
+    if slug:
+        post = get_object_or_404(Post, slug=slug)
+    else:
+        post = Post()
+    if request.method == 'GET':
+        if request.user.is_authenticated():
+            return render_to_response('editor.html', {'post': post, 'user': request.user})
+        else:
+            return HttpResponseForbidden('Authenticated only')
+    if request.is_ajax():
+        if request.method == 'POST':
+            data = json.loads(request.body.decode('utf-8'))
+            post.title = data['title']
+            post.content_raw = data['content']
+            post.author = request.user
+            post.slug = data['slug']
+            tags = data['tags']
+            post.save()
+            for tag in tags:
+                if tag:
+                    t, created = Tag.objects.get_or_create(name=tag.strip())
+                    post.tag.add(t)
+            post.save()
+            return HttpResponse(
+                json.dumps(
+                    {'slug': post.slug}
+                )
+            )
 
 
 class IndexView(ListView):

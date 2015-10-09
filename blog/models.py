@@ -5,7 +5,7 @@ import mistune
 
 
 class Post(models.Model):
-    title = models.CharField(max_length=500)
+    title = models.CharField(max_length=500, unique=True)
     slug = models.SlugField()
     author = models.ForeignKey(User)
     pub_date = models.DateTimeField('pub_date', auto_now_add=True)
@@ -32,7 +32,7 @@ class Post(models.Model):
 
 
 class Tag(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
 
     def __unicode__(self):
         return self.name

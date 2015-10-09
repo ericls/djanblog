@@ -17,14 +17,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/dev/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '8#ss8b$uyazbc*%$6-2!3@wn(b#x_9k=#r7-!21k)m#+8$18)p'
+SECRET_KEY = 'somethingyoudontknow'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = ['leeeric.com', 'www.leeeric.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition

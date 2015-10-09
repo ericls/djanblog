@@ -39,6 +39,10 @@
                 <i class="fa fa-file-text-o"></i>&nbsp;
                 Read More
             </a>
+            {% if user.is_authenticated %}
+                <i class="fa fa-pencil-square"></i>&nbsp;
+                <a href="{% url 'edit_post' post.slug %}">Edit</a>
+            {% endif %}
         </div>
         {% endspaceless %}
     </div>

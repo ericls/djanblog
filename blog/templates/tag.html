@@ -10,7 +10,7 @@
 <div class="pager">
     {% if page_obj.has_previous %}
     {% if page_obj.previous_page_number == 1 %}
-    <a href="{% url 'tag_1' slug=tag.name %}" class="round pre">Pre</a>
+    <a href="{% url 'tag' slug=tag.name %}" class="round pre">Pre</a>
     {% else%}
     <a href="{% url 'tag' slug=tag.name page=page_obj.previous_page_number %}" class="round pre">Pre</a>
     {% endif %}

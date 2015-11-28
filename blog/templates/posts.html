@@ -30,7 +30,7 @@
             <span class="tags">
                 <i class="fa fa-tags"></i>
                 {% for tag in tags %}
-                <a href="{% url 'tag_1' tag.name %}">{{tag.name}}</a>
+                <a href="{% url 'tag' tag.name %}">{{tag.name}}</a>
                 {% endfor %}
             </span>
             {% endif %}

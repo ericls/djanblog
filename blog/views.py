@@ -52,7 +52,7 @@ def editor(request, slug=None):
 
 class IndexView(ListView):
     model = Post
-    template_name = 'index.html'
+    template_name = 'list.html'
     context_object_name = 'posts'
     paginate_by = 3
 
@@ -68,7 +68,7 @@ class IndexView(ListView):
 
 class TagView(ListView):
     model = Post
-    template_name = 'tag.html'
+    template_name = 'list.html'
     context_object_name = 'posts'
     paginate_by = 3
 

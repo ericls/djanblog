@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load blog_tags %}
+
+{% block main %}
+
+{% include 'posts.html' %}
+
+<div class="clear"></div>
+
+{% if is_paginated %}
+<div class="pager">
+    {% if page_obj.has_previous %}
+    <a href="{% change_page request page=page_obj.previous_page_number %}" class="round pre">Pre</a>
+    {% endif %}
+
+    {% if page_obj.has_next %}
+    <a href="{% change_page request page=page_obj.next_page_number %}" class="round next">Next</a>
+    {% endif %}
+</div>
+{% endif %}
+
+</div>
+
+{% endblock %}

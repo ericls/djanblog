@@ -94,5 +94,9 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 
+# IDE and Editor related files
 .idea
+*.swp
+
+# Database
 *.sqlite3

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.http import HttpResponseForbidden, HttpResponse
@@ -11,12 +11,12 @@ import json
 def feed(request):
     posts = Post.objects.filter(hidden=False).all()
     updated = Post.objects.latest('pub_date').pub_date
-    return render_to_response('feed.xml', {'posts': posts, 'updated': updated})
+    return render(request, 'feed.xml', {'posts': posts, 'updated': updated})
 
 
 def archive(request):
     posts = Post.objects.filter(hidden=False).all()
-    return render_to_response('archive.html', {'posts': posts, 'title': 'Archive'})
+    return render(request, 'archive.html', {'posts': posts, 'title': 'Archive'})
 
 
 def editor(request, slug=None):
@@ -26,7 +26,11 @@ def editor(request, slug=None):
         post = Post()
     if request.method == 'GET':
         if request.user.is_authenticated():
-            return render_to_response('editor.html', {'post': post, 'user': request.user})
+            return render(
+                request,
+                'editor.html',
+                {'post': post, 'user': request.user}
+            )
         else:
             return HttpResponseForbidden('Authenticated only')
     if request.is_ajax():

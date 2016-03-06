@@ -13,8 +13,8 @@
     <meta name="renderer" content="webkit"/>
     <title>{% if title %}{{title}}-{% endif %}eRic</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link href="{% static 'css/tomorrow.css' %}" type="text/css" rel="stylesheet"/>
-    <link href="{% static 'css/blog.css' %}" type="text/css" rel="stylesheet"/>
+    <link href="{% static 'blog/css/tomorrow.css' %}" type="text/css" rel="stylesheet"/>
+    <link href="{% static 'blog/css/blog.css' %}" type="text/css" rel="stylesheet"/>
 
     {% block header_ext %}
     {% endblock %}
@@ -24,7 +24,7 @@
 <div id="body_wrapper">
 
 
-    <header style="background-image: url({% static 'image/sea.jpg' %})" class="header">
+    <header style="background-image: url({% static 'blog/image/sea.jpg' %})" class="header">
         <div class="header_wrapper">
             <a href="/">
                 <h1 class="title">

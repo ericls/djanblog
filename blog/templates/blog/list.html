@@ -1,9 +1,9 @@
-{% extends 'base.html' %}
+{% extends 'blog/base.html' %}
 {% load blog_tags %}
 
 {% block main %}
 
-{% include 'posts.html' %}
+{% include 'blog/posts.html' %}
 
 <div class="clear"></div>
 
@@ -18,7 +18,5 @@
     {% endif %}
 </div>
 {% endif %}
-
-</div>
 
 {% endblock %}

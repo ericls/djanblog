@@ -11,12 +11,12 @@ import json
 def feed(request):
     posts = Post.objects.filter(hidden=False).all()
     updated = Post.objects.latest('pub_date').pub_date
-    return render(request, 'feed.xml', {'posts': posts, 'updated': updated})
+    return render(request, 'blog/feed.xml', {'posts': posts, 'updated': updated})
 
 
 def archive(request):
     posts = Post.objects.filter(hidden=False).all()
-    return render(request, 'archive.html', {'posts': posts, 'title': 'Archive'})
+    return render(request, 'blog/archive.html', {'posts': posts, 'title': 'Archive'})
 
 
 def editor(request, slug=None):
@@ -28,7 +28,7 @@ def editor(request, slug=None):
         if request.user.is_authenticated():
             return render(
                 request,
-                'editor.html',
+                'blog/editor.html',
                 {'post': post, 'user': request.user}
             )
         else:
@@ -56,7 +56,7 @@ def editor(request, slug=None):
 
 class IndexView(ListView):
     model = Post
-    template_name = 'list.html'
+    template_name = 'blog/list.html'
     context_object_name = 'posts'
     paginate_by = 3
 
@@ -72,7 +72,7 @@ class IndexView(ListView):
 
 class TagView(ListView):
     model = Post
-    template_name = 'list.html'
+    template_name = 'blog/list.html'
     context_object_name = 'posts'
     paginate_by = 3
 
@@ -90,7 +90,7 @@ class TagView(ListView):
 
 class PostView(DetailView):
     model = Post
-    template_name = 'post.html'
+    template_name = 'blog/post.html'
     context_object_name = 'post'
 
     def get_context_data(self, **kwargs):

@@ -99,12 +99,12 @@ class PostView(DetailView):
         current.increase_click()
 
         try:
-            next_post = current.get_next_by_pub_date()
+            next_post = current.get_next_by_pub_date(hidden=False)
         except:
             next_post = None
 
         try:
-            previous_post = current.get_previous_by_pub_date()
+            previous_post = current.get_previous_by_pub_date(hidden=False)
         except:
             previous_post = None
 

@@ -1,1 +1,1 @@
-web: gunicorn djanblog.wsgi --log-file - --access-logfile -
+web: gunicorn djanblog.wsgi --log-file -

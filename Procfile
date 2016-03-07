@@ -1,0 +1,1 @@
+web: gunicorn djanblog.wsgi --log-file - --access-logfile -

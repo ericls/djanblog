@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import dj_database_url
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # Quick-start development settings - unsuitable for production
@@ -103,3 +104,13 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 DISQUS_SHORTNAME = 'xxx'
+
+# Heroku Settings
+db_from_env = dj_database_url.config(conn_max_age=500)
+ON_HEROKU = bool(db_from_env)
+if ON_HEROKU:  # from https://devcenter.heroku.com/articles/django-app-configuration
+    DEBUG = False
+    PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+    STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+    STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+    DATABASES['default'].update(db_from_env)
